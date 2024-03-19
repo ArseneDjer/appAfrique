@@ -1,0 +1,25 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="card rounded">
+      <div class="card-header">
+        <h2 class="mb-0 text-center">Création d'un système solaire</h2>
+      </div>
+      <div class="card-body">
+        {% if result %}
+          <h3>Résultats :</h3>
+          <!-- Affichez ici les résultats en utilisant les propriétés du modèle SolarSystem -->
+          <p><strong>Capacité recommandée des batteries:</strong> {{ result.recommended_battery_capacity }} kWh</p>
+          <p><strong>Capacité recommandée des panneaux solaires:</strong> {{ result.recommended_panel_capacity }} kW</p>
+        {% endif %}
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Calculer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
